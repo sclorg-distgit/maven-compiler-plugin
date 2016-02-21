@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        3.1
-Release:        4.11%{?dist}
+Release:        4.12%{?dist}
 Summary:        Maven Compiler Plugin
 
 License:        ASL 2.0
@@ -14,13 +14,13 @@ Source0:        http://repo1.maven.org/maven2/org/apache/maven/plugins/%{pkg_nam
 BuildArch: noarch
 
 BuildRequires:  %{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-maven-plugin-plugin
-BuildRequires:  maven30-maven-shared-incremental
-BuildRequires:  maven30-maven-surefire-provider-junit
-BuildRequires:  maven30-maven-doxia-sitetools
-BuildRequires:  maven30-maven-plugin-testing-harness
-BuildRequires:  maven30-maven-toolchain
-BuildRequires:  maven30-plexus-compiler >= 2.0
+BuildRequires:  %{?scl_prefix}maven-plugin-plugin
+BuildRequires:  %{?scl_prefix}maven-shared-incremental
+BuildRequires:  %{?scl_prefix}maven-surefire-provider-junit
+BuildRequires:  %{?scl_prefix}maven-doxia-sitetools
+BuildRequires:  %{?scl_prefix}maven-plugin-testing-harness
+BuildRequires:  %{?scl_prefix}maven-toolchain
+BuildRequires:  %{?scl_prefix}plexus-compiler >= 2.0
 
 
 %description
@@ -36,13 +36,13 @@ API documentation for %{pkg_name}.
 %setup -q -n %{pkg_name}-%{version}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build -f
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -56,6 +56,9 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 3.1-4.12
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 3.1-4.11
 - maven33 rebuild
 

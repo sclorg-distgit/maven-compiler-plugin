@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        3.1
-Release:        4.12%{?dist}
+Release:        4.13%{?dist}
 Summary:        Maven Compiler Plugin
 
 License:        ASL 2.0
@@ -13,7 +13,7 @@ Source0:        http://repo1.maven.org/maven2/org/apache/maven/plugins/%{pkg_nam
 
 BuildArch: noarch
 
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix}maven-plugin-plugin
 BuildRequires:  %{?scl_prefix}maven-shared-incremental
 BuildRequires:  %{?scl_prefix}maven-surefire-provider-junit
@@ -56,6 +56,9 @@ set -e -x
 %doc LICENSE NOTICE
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 3.1-4.13
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 3.1-4.12
 - maven33 rebuild #2
 
